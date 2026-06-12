@@ -1,0 +1,58 @@
+🌧️ Project Overview: Agentic Rain Alert System
+This project is an automated, agentic weather monitor built with Python. Instead of forcing you to check the weather manually every day, this script acts as a background agent that proactively keeps watch over your city.
+
+How it works:
+Data Acquisition: The script makes a secure API call to Open-Meteo's global forecast servers to pull down a 48-hour timeline array of your precise location.
+
+Intelligent Filtering: To prevent annoying false alarms caused by high coastal humidity or microscopic trace sprinkles (like a 0.1 mm morning mist), the agent applies strict real-world filters. It only sounds the alarm if a forecast hour predicts at least 2.0 mm of rainfall with at least a 40% confidence probability.
+
+Secure Notification Loop: If both criteria are met, the agent instantly packages the technical weather matrix into a clean, stylized HTML summary table and shoots it directly to your personal email inbox.
+
+⚙️ Setup & Configuration Guide
+Follow these steps to customize the script with your location and securely link your email account.
+
+Step 1: Install Python Dependencies
+The script relies on two lightweight libraries to fetch data and process hidden environmental variables. Open your terminal or command prompt in your project folder and run:
+
+pip install requests python-dotenv
+
+Step 2: Configure Your Secrets File (.env)
+To ensure your sensitive passwords are never accidentally leaked or uploaded to public platforms like GitHub, the application reads its credentials from an isolated, hidden file.
+
+Create a new file named exactly .env in the root folder of your project, open it with any text editor, and add the following format with your specific details:
+
+EMAIL_ADDRESS=your_sender_account@gmail.com
+EMAIL_PASSWORD=your_16_character_google_app_password
+TO_EMAIL=your_destination_inbox@gmail.com
+
+📧 Fields Explained:
+EMAIL_ADDRESS: The Gmail account that the script will log into to send the alert out (e.g., hamzasq1298@gmail.com).
+EMAIL_PASSWORD: Your secure 16-character Google App Password (see Step 3 below).
+TO_EMAIL: The inbox where you actually want to receive the alert notification (e.g., hamzasaleem1298@gmail.com).
+
+⚠️ Important: Do not add spaces around the = signs, and do not wrap your entries in quotation marks.
+
+Step 3: Generate Your Google App Password
+Google blocks standard automation scripts from using your everyday account password. You must generate a dedicated application token:
+
+1. Open your browser and navigate to your Google Account Settings.
+2. Click on the Security tab on the left.
+3. Scroll down and verify that 2-Step Verification is turned on.
+4. Type "App passwords" into the top search bar and click it.
+5. Create a name for your token (e.g., "Rain Alert Agent") and hit Create.
+6. Google will display a unique 16-character string. Copy this password and paste it directly into your .env file for the EMAIL_PASSWORD field.
+
+Step 4: Update Your Coordinates for Weather Extraction
+By default, the script tracks the weather for Karachi, Pakistan. To change the target area to your exact location, open agenticworkflow.py in your code editor and update the global coordinates at the top of the file:
+
+# ============ CONFIGURATION ============
+LATITUDE = 24.860735   # Substitute with your city's latitude
+LONGITUDE = 67.001137  # Substitute with your city's longitude
+
+📍 How to find your coordinates:
+Open Google Maps in your browser, search for your home or city, and look directly at the URL bar. Your latitude and longitude are the numbers listed right after the @ symbol (e.g., google.com/maps/@24.860735,67.001137...).
+
+Step 5: Execute the Engine
+Once your .env file is saved and your coordinates are set in the main file, you can double-click your pre-configured batch file (.bat) or trigger it manually from your terminal:
+
+python agenticworkflow.py
