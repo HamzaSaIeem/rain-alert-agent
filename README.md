@@ -48,3 +48,7 @@ Run Rain Alert.bat
 ## Configuration
 
 Update the target coordinates near the top of [agenticworkflow.py](agenticworkflow.py) to match your location.
+
+## More Detailed Guide
+
+For more details refer to the .readme file
